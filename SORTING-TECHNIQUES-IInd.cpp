@@ -95,6 +95,30 @@ int main()
 
 //QUICK SORT => T.C: Average/Best = 0(N*log(N)), worst => 0(N^2) & S.C: 0(1) + 0(N) auxiliary stack space.
 
+// Bad Pivot Choice: If the pivot is always the smallest or largest element, one of the partitions will be empty (or contain only one element),
+// while the other partition contains the rest of the elements.
+// For example, in an array of 10 elements, the partitioning might split the array into one subarray with 9 elements and another with 0 (empty).
+
+// Skewed Recursion: Instead of dividing the array roughly in half, you end up with highly unbalanced partitions.
+// In the worst case, this happens every time you partition the array. So, for every level of recursion, you're only reducing the problem size by 1 element.
+
+// Number of Comparisons:
+
+// In the worst-case, partitioning always results in one of the partitions having 0 elements, and the other having 
+// 𝑛
+// −
+// 1
+// n−1 elements.
+// The first partitioning step takes 
+// 𝑛
+// n comparisons.
+// The next recursive step takes 
+// 𝑛
+// −
+// 1
+// n−1 comparisons.
+// This continues until the last partition step takes 1 comparison.
+
 
 class Solution
 {
@@ -120,7 +144,7 @@ class Solution
         while(i < j){
             //finding bada in the left
             while( i < high && pivotEl >= arr[i]) i+=1;
-            //finding bada in the right
+            //finding chota in the right
             while( j > low && pivotEl < arr[j]) j-=1;
             
             //ab i left of pivot m pivotEl se bade par hai and 
